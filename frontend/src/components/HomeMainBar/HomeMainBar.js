@@ -3,7 +3,9 @@ import { Link, useLocation } from 'react-router-dom'
 import './HomeMainBar.css'
 import QuestionsList from './QuestionsList';
 
+
 const HomeMainBar = () => {
+  
   var questionsList = [{
     _id: 1,
     upVotes: 3,
@@ -56,12 +58,13 @@ const HomeMainBar = () => {
       userId: 2,
     }]
   }]
-
   const user = 1;
   const checkAuth = () => {
     if (user === null) {
       alert('Login or Signup to ask a question')
     }
+    
+    
   }
 
   const location = useLocation();

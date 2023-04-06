@@ -2,10 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.css'
 import Avatar from '../Avatar/Avatar';
+import { useSelector } from 'react-redux';
 
 
 const Navbar = () => {
-  var User=null;
+  const {user,isAuthenticated}=useSelector(state=>state.user)
+  console.log(isAuthenticated);
   return (
     <nav className='main-nav'>
         <div className='navbar'>
@@ -19,7 +21,7 @@ const Navbar = () => {
               <input type='text' placeholder='Search...'/>
               <i className='fa fa-search'></i>
             </form>
-            {User === null ? (
+            {user === null ? (
               <Link to='/login' className='nav-item nav-links'>
                 Login
               </Link>
