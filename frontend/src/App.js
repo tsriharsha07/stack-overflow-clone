@@ -6,9 +6,15 @@ import Login from './Pages/Auth/Login';
 import Questions from './Pages/Questions/Questions';
 import AskQuestion from './Pages/AskQuestions/AskQuestion';
 import DisplayQuestion from './Pages/Questions/DisplayQuestion';
-
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { getAllQuestions } from './actions/questionActions';
 
 function App() {
+  const dispatch=useDispatch()
+  useEffect(()=>{
+    dispatch(getAllQuestions());
+  },[dispatch])
   return (
     <Router>
       <div className="App">

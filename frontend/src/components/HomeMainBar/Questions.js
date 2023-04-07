@@ -17,7 +17,7 @@ const Questions = ({question}) => {
         <div className='display-tags-time'>
             <div className='display-tags'>
                 {
-                    question.questionTags.map((tag) => (
+                    question && question.tags && question.tags.map((tag) => (
                         <p key={tag.id}>{tag}</p>
                     ))
                 }

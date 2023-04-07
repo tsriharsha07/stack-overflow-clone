@@ -1,11 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom'
 import './HomeMainBar.css'
 import QuestionsList from './QuestionsList';
+import {useDispatch, useSelector} from 'react-redux'
+import { getAllQuestions } from '../../actions/questionActions';
 
 
 const HomeMainBar = () => {
-  
+  const dispatch=useDispatch()
+  const {allQuestions}=useSelector(state=>state.allQuestions);
+  useEffect(()=>{
+    dispatch(getAllQuestions());
+  },[dispatch])
+
+
   var questionsList = [{
     _id: 1,
     upVotes: 3,
@@ -82,7 +90,7 @@ const HomeMainBar = () => {
             questionsList === null ? (<h1>Loading....</h1>) : (
               <>
                 <p>{questionsList.length} questions</p>
-                <QuestionsList questionsList={questionsList} />
+                <QuestionsList questionsList={allQuestions} />
               </>
             )
           }

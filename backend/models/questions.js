@@ -33,7 +33,7 @@ const questionSchema=mongoose.Schema({
     userId:{
         type:String
     },
-    postedOn:{
+    askedOn:{
         type:Date,
         default:Date.now
     },
@@ -43,6 +43,9 @@ const questionSchema=mongoose.Schema({
         },
         userAnswered:{
             type:String,
+        },
+        userId:{
+            type:String
         },
         answeredOn:{
             type:Date,

@@ -2,12 +2,18 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.css'
 import Avatar from '../Avatar/Avatar';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 
 const Navbar = () => {
   const {user,isAuthenticated}=useSelector(state=>state.user)
-  console.log(isAuthenticated);
+  const dispatch=useDispatch();
+  console.log(user);
+  const logOut=()=>{
+    dispatch({type:'LOGOUT_USER'});
+    console.log('hii')
+  }
+
   return (
     <nav className='main-nav'>
         <div className='navbar'>
@@ -21,7 +27,7 @@ const Navbar = () => {
               <input type='text' placeholder='Search...'/>
               <i className='fa fa-search'></i>
             </form>
-            {user === null ? (
+            {user === null || user===undefined ? (
               <Link to='/login' className='nav-item nav-links'>
                 Login
               </Link>
@@ -29,7 +35,7 @@ const Navbar = () => {
             (
               <>
                  <Avatar backgroundColor='#009dff' px='10px' py='7px' borderRadius='50%' color='white'><Link to='/profile' style={{color:'whitesmoke', textDecoration:'none'}}>M</Link></Avatar>
-                 <button className='nav-item nav-links'>Logout</button>
+                 <button className='nav-item nav-links' onClick={logOut}>Logout</button>
               </>
             )}
         </div>

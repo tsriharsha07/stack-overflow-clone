@@ -1,9 +1,19 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Avatar from '../../components/Avatar/Avatar';
+import moment from 'moment';
+import {useDispatch, useSelector} from 'react-redux'
+import { deleteAnswer } from '../../actions/questionActions';
+
 
 const DisplayAnswer = ({ question }) => {
-    console.log(question);
+    const {user}=useSelector(state=>state.user)
+    const dispatch=useDispatch();
+    const params=useParams()
+    const id=params.id;
+    const deleteHandler = (answerId,noOfAnswers) => {
+        dispatch(deleteAnswer(id,answerId,noOfAnswers-1))
+    }
     return (
         <div>
             {
@@ -13,10 +23,14 @@ const DisplayAnswer = ({ question }) => {
                         <div className="question-actions-user">
                             <div>
                                 <button type='button'>Share</button>
-                                <button type='button'>Delete</button>
+                                {
+                                    user?.name === question?.userPosted && <button type='button' onClick={()=>{deleteHandler(answer._id,question.noOfAnswers)}}>
+                                        Delete
+                                    </button>
+                                }
                             </div>
                             <div>
-                                <p>answer {answer.answeredOn}</p>
+                                <p>answer {moment(answer.answeredOn).fromNow()}</p>
                                 <Link to={`user/${answer.userId}`} className='user-link' style={{ color: '#0086d8' }}>
                                     <Avatar backgroundColor="orange"
                                         px="8px"
