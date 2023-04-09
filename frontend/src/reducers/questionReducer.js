@@ -117,3 +117,27 @@ export const deleteAnswerReducer=(state={},action)=>{
             return state;
     }
 }
+
+export const voteQuestionReducer=(state={},action)=>{
+    switch(action.type){
+        case 'VOTE_QUESTION_REQUEST':
+            return{
+              ...state,
+                loading:true
+            }
+        case 'VOTE_QUESTION_SUCCESS':
+            return{
+              ...state,
+                loading:false,
+                success:action.payload.success
+            }
+        case 'VOTE_QUESTION_FAIL':
+            return{
+              ...state,
+                loading:false,
+                error:action.payload
+            }
+        default:
+            return state;
+    }
+}

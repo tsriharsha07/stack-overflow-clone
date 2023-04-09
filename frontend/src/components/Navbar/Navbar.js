@@ -13,7 +13,7 @@ const Navbar = () => {
     dispatch({type:'LOGOUT_USER'});
     console.log('hii')
   }
-
+  console.log(user && user?.name.charAt(0));
   return (
     <nav className='main-nav'>
         <div className='navbar'>
@@ -34,7 +34,7 @@ const Navbar = () => {
             ):
             (
               <>
-                 <Avatar backgroundColor='#009dff' px='10px' py='7px' borderRadius='50%' color='white'><Link to='/profile' style={{color:'whitesmoke', textDecoration:'none'}}>M</Link></Avatar>
+                 <Avatar backgroundColor='#009dff' px='10px' py='7px' borderRadius='50%' color='white'><Link to='/profile' style={{color:'whitesmoke', textDecoration:'none'}}>{user && user?.name.charAt(0)}</Link></Avatar>
                  <button className='nav-item nav-links' onClick={logOut}>Logout</button>
               </>
             )}

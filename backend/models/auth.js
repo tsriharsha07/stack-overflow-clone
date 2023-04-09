@@ -20,6 +20,9 @@ const userSchema=mongoose.Schema({
     tags:{
         type:[String]
     },
+    about:{
+        type:String
+    },
     joinedAt:{
         type:Date,
         default:Date.now

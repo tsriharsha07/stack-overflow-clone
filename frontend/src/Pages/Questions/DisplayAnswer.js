@@ -14,6 +14,7 @@ const DisplayAnswer = ({ question }) => {
     const deleteHandler = (answerId,noOfAnswers) => {
         dispatch(deleteAnswer(id,answerId,noOfAnswers-1))
     }
+    
     return (
         <div>
             {
@@ -24,7 +25,7 @@ const DisplayAnswer = ({ question }) => {
                             <div>
                                 <button type='button'>Share</button>
                                 {
-                                    user?.name === question?.userPosted && <button type='button' onClick={()=>{deleteHandler(answer._id,question.noOfAnswers)}}>
+                                    user?.name === answer?.userAnswered && <button type='button' onClick={()=>{deleteHandler(answer._id,question.noOfAnswers)}}>
                                         Delete
                                     </button>
                                 }
